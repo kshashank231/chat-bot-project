@@ -100,7 +100,7 @@ scrollbar = Scrollbar(base, command=ChatLog.yview, cursor="heart")
 ChatLog['yscrollcommand'] = scrollbar.set
 
 #Create Button to send message
-SendButton = Button(base, font=("Verdana",12,'bold'), text="Send", width="12", height=5,
+SendButton = Button(base, font=("Verdana",12,'bold'), text="Send", width="10", height=5,
                     bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff',
                     command= send )
 
@@ -112,7 +112,7 @@ EntryBox = Text(base, bd=0, bg="white",width="29", height="5", font="Arial")
 #Place all components on the screen
 scrollbar.place(x=376,y=6, height=386)
 ChatLog.place(x=6,y=6, height=386, width=370)
-EntryBox.place(x=128, y=401, height=90, width=265)
-SendButton.place(x=6, y=401, height=90)
+EntryBox.place(x=10, y=401, height=90, width=265)
+SendButton.place(x=270, y=401, height=90)
 
 base.mainloop()
