@@ -191,7 +191,7 @@ def predict_class(sentence, model,classes = classes,all_classes=all_classes,cont
     p = bow(sentence, words,show_details=False)
     res = model.predict(np.array([p]))[0]
     pred_proba = res.max()
-    ACCURACY = 0.8
+    ACCURACY = 0.7
     if pred_proba > ACCURACY:
         output_class = classes[res.argmax()]
         output_context = context_dict[output_class]
@@ -202,18 +202,7 @@ def predict_class(sentence, model,classes = classes,all_classes=all_classes,cont
 
     return output_class,output_context
 
-def predict_final_class(sentence, model,classes = classes,all_classes=all_classes,context_dict=context_dict):
-    contexts = []
-    values = context_dict.values()
-    for i in values:
-        if i != "":
-            contexts.append(i)
-    output_class,output_context = predict_class(sentence, model,classes = classes,
-                                            all_classes=all_classes,context_dict=context_dict)
-    if output_context in contexts:
-        output_class = output_context
-        output_context = context_dict[output_class]
-    return output_class,output_context
+
 
 def getResponse(tag, intents_json):
     
@@ -225,7 +214,7 @@ def getResponse(tag, intents_json):
     return result
 
 def chatbot_response(msg,model=model):
-    tag,c = predict_final_class(msg, model)
+    tag,c = predict_class(msg, model)
     res = getResponse(tag, intents)
     return res
 
